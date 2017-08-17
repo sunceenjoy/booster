@@ -1,5 +1,5 @@
 # Introduction
-This project is based on PHP Symfony2 Framework, uses Mysql as the database storage and Redis as the cache server, use PSR-4 as code standard. Some other libs or tools are involved: Boostrap and jquery, bower, composer, SASS.
+This project is based on PHP Symfony2 Framework, uses Mysql as the database storage and Redis as the cache server, PSR-4 as the code standard. Also some other libs or tools are involved: Boostrap and jquery, bower, composer, SASS.  
 Demo: https://booster.mmyyabb.com
 # Directory Structure
   - ***app/config***: config files dir.
@@ -16,22 +16,22 @@ Demo: https://booster.mmyyabb.com
 # Database:
  - Tables: fundraisers, reviews.
  - Foreign key/constraint: fundraiser_id_constraint. I use this constraint to avoid invalid data inserting to table reviews.
- - Trigger: update_rating.  When a new review is created, we update fundraiser.rating automatically. 
+ - Trigger: update_rating.  When a new review is created, the rating of that fundraiser is updated automatically. 
 
 # Implementation
- - All form has the validation on both front end and back end. All pages are user-friendly, users will see either an error message or success message when they interact with the forms.
- - Users request rate is implemented with Redis cache server to avoid potential attacks. Users are limit to send no more than 3 posts per 30 seconds. 
- - An email address with proper format is considered as an unique user.
+ - All form has the validation on both front end and back end. All pages are user-friendly, users will see either an error message or success message when they interact with the pages.
+ - Users request rate is implemented with Redis in order to avoid potential attacks. Users are limit to send no more than 3 posts per 30 seconds. 
+ - Email addresses with proper format is considered as an unique user.
  - Unit tests are implements for util class, controllers, entity, helper class.
 
 # Alternative for email verification
-If we need to verify whether an email address is used by someone but not just the one with the right format. Those are steps:
+In this version, I just check the format for email validation. If we need to verify whether an email address is used by someone but not just the one with the right format. Those are steps:
 1. Add a record into table reviews after users submit the form. set reviews.flag = 0
 2. create token, set reviews.token= token.
 3. Send an email including this link to this users email address.
 4. Users open their mailbox and click the link to verify the email.
 5. Process this token and compare with the one in table reviews: token=reviews.token and review.email=email address
-6. If a record is find, then users vote is valid.
+6. If a matched record is found, then users review is valid.
 
 ### Installation
 1.Add write rule & ENV
