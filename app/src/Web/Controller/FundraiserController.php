@@ -26,7 +26,7 @@ class FundraiserController extends BaseController
     public function index(Request $request)
     {
         $pageSize = 10;
-        $currentPage = $request->query->get('page', 1);
+        $currentPage = max(1, $request->query->get('page', 1));
         
         /** @var Paginator $paginator */
         $paginator = new Paginator($this->em->getRepository('Booster:FundraiserEntity')->getQuery(), $currentPage, $pageSize);

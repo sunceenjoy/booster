@@ -87,7 +87,7 @@ class ReviewController extends BaseController
     public function reviewList(Request $request)
     {
         $pageSize = 10;
-        $currentPage = $request->query->get('page', 1);
+        $currentPage = max(1, $request->query->get('page', 1));
         $fundraiserId = $request->query->get('f_id');
         
         /** @var Paginator $paginator */
