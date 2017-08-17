@@ -1,0 +1,26 @@
+{% extends 'web/common/frame.html.twig' %}
+{% set pageTitle = 'Fundraiser List' %}
+{% block body %}
+    <p>
+        <a href="/fundraiser-create">Add a new fundraiser</a>
+    </p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Fundraiser</th>
+                <th>Rating</th>
+                <th>Review</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fundraiser in paginator %}
+                <tr>
+                    <td class="col-lg-6">{{fundraiser.name}}</td>
+                    <td>{{fundraiser.rating}} <span class="glyphicon glyphicon-star-empty selected"></span></td>
+                    <td><a href="/review-create?f_id={{fundraiser.id}}">Add a review</a> | <a href="/review-list?f_id={{fundraiser.id}}">All reviews</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include 'web/common/paginator.default.twig' %}
+{% endblock %}

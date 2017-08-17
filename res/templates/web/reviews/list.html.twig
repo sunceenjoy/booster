@@ -1,0 +1,31 @@
+{% extends 'web/common/frame.html.twig' %}
+{% set pageTitle = 'Review List' %}
+{% block body %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Review</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if paginator.getTotalPage() %}
+            {% for review in paginator %}
+                <tr>
+                    <td class="col-lg-6">{{review.name}}</td>
+                    <td>{{review.rating}} <span class="glyphicon glyphicon-star-empty selected"></span></td>
+                    <td>{{review.review|nl2br}}</td>
+                    <td>{{review.created_at|date}}</td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4" align="center">No Reviews.  <a href="/review-create?f_id={{fundraiserId}}">Add a review</a></td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    {% include 'web/common/paginator.default.twig' %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'web/common/frame.html.twig' %}
+{% set pageTitle = 'Create Fundraiser' %}
+{% block body %}
+    <div class="row">
+    <div class="col-md-4">
+        <img src="/images/fundraisers/fundraiser.png" class="img-responsive center-block">
+    </div>
+
+    <div class="col-md-8">
+        <h3>
+            Add A Fundraiser
+        </h3>
+        <form id="reviewForm" method="post" action="/fundraiser-post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" class="form-control" maxlength="32" data-error="Please enter a name." required>
+                <div class="help-block with-errors"></div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Submit New Fundraiser">
+        </form>
+    </div><!--.col -->
+</div><!--./row -->
+{% endblock %}
+
+{% block script %}
+<script src="/bower_components/bootstrap-validator/dist/validator.min.js"></script>
+<script>
+$(function () {
+    $('#reviewForm').validator();
+});
+</script>
+{% endblock %}

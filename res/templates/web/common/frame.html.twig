@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{pageTitle}}</title>
+        <meta name="Description" content="">
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/site.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Fundraiser Rating</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+            {% if session.flashbag.has('success') %}
+                <div class="alert alert-success">
+                    {{ session.flashbag.get('success')|join('<br>')|raw }}
+                </div>
+            {% endif %}
+            {% if session.flashbag.has('danger') %}
+                <div class="alert alert-danger">
+                    {{ session.flashbag.get('danger')|join('<br>')|raw }}
+                </div>
+            {% endif %}
+            
+            {% block body %}
+            {% endblock %}
+
+        </div><!-- /.container -->
+
+    </body>
+</html>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+{% block script %}
+{% endblock %}

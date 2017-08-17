@@ -1,0 +1,22 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px; }
+
+.navbar-toggle {
+  display: none; }
+
+.star-container .glyphicon {
+  font-size: 25px;
+  color: gray;
+  padding: 4px;
+  margin-right: -4px; }
+.star-container .selected {
+  color: #5CB85C; }
+
+.subtle {
+  color: #7f7f7f; }
+
+.table-bordered .selected {
+  color: #5CB85C; }
+
+/*# sourceMappingURL=site.css.map */
