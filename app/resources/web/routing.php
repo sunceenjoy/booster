@@ -9,7 +9,7 @@ $collection->add(
     'portal',
     new Route(
         '/',
-        array('_controller' => 'Booster\Web\Controller\FundraiserController::index',)
+        array('_controller' => 'Booster\Web\Controller\FundraiserController::fundraiserList',)
     )
 );
 

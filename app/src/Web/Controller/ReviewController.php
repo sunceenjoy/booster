@@ -3,9 +3,11 @@
 namespace Booster\Web\Controller;
 
 use Booster\Core\Paginator;
+use Booster\Core\Container;
 use Booster\Web\Helper\RequestRateChecker;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Review Controller
@@ -16,12 +18,16 @@ class ReviewController extends BaseController
     /** @var RequestRateChecker $requestRateChecker; */
     protected $requestRateChecker;
     
-    public function __construct(\Booster\Core\Container $container)
+    public function __construct(Container $container)
     {
         parent::__construct($container);
         $this->requestRateChecker = $container['request_rate_checker'];
     }
     
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function createReview(Request $request)
     {
         $fundraiser = $this->em->getRepository('Booster:FundraiserEntity')->getFundraiserById($request->get('f_id'));
@@ -35,6 +41,10 @@ class ReviewController extends BaseController
         return $this->render('web/reviews/create_review.html.twig', $params);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function postReview(Request $request)
     {
         $fundraiserId = $request->request->get('f_id');

@@ -7,6 +7,7 @@ use Booster\Core\Paginator;
 use Booster\Web\Helper\RequestRateChecker;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Fundraiser Controller
@@ -23,7 +24,11 @@ class FundraiserController extends BaseController
         $this->requestRateChecker = $container['request_rate_checker'];
     }
     
-    public function index(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function fundraiserList(Request $request)
     {
         $pageSize = 10;
         $currentPage = max(1, $request->query->get('page', 1));
@@ -38,6 +43,10 @@ class FundraiserController extends BaseController
         return $this->render('web/fundraisers/create_fundraiser.html.twig');
     }
     
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function postFundraiser(Request $request)
     {
         $name = trim($request->request->get('name'));

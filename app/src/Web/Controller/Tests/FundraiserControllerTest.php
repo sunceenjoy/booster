@@ -15,7 +15,7 @@ class FundraiserControllerTest extends \PHPUnit_Framework_TestCase
     protected $container;
     
     /**
-     * the setUpBeforeClass is called before the first test of the test case class is run and after the last test of the test case class is run, respectively.
+     * The setUpBeforeClass is called before the first test of the test case class is run and after the last test of the test case class is run, respectively.
      * @global array $c
      */
     public static function setUpBeforeClass()
