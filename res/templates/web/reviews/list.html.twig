@@ -17,7 +17,7 @@
                     <td class="col-lg-6">{{review.name}}</td>
                     <td>{{review.rating}} <span class="glyphicon glyphicon-star-empty selected"></span></td>
                     <td>{{review.review|nl2br}}</td>
-                    <td>{{review.created_at|date}}</td>
+                    <td>{{review.getCreatedAt()|date}}</td>
                 </tr>
             {% endfor %}
             {% else %}

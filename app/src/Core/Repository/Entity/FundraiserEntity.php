@@ -52,6 +52,16 @@ class FundraiserEntity extends BaseEntity
         return $this->rating;
     }
    
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+    
     /**
      * @ORM\PreFlush
      * see http://symfony.com/doc/current/cookbook/doctrine/file_uploads.html
