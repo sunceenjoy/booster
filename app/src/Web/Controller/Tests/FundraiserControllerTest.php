@@ -36,7 +36,7 @@ class FundraiserControllerTest extends \PHPUnit_Framework_TestCase
         
         // Mock database
         $this->container['doctrine.entity_manager'] = function () {
-            // Now, mock the repository so it returns the mock of the employee
+            // Now, mock the repository so it returns the mock repository
             $mockRepository = $this->createMock(FundraiserRepository::class);
             $mockRepository->expects($this->any())
                 ->method('addNew')

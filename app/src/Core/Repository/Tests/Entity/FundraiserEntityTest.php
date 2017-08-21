@@ -16,5 +16,9 @@ class FundraiserEntityTest extends \PHPUnit_Framework_TestCase
         $rating = 1;
         $entity->setRating($rating);
         $this->assertEquals($rating, $entity->getRating());
+        
+        $createdAt = new \DateTime();
+        $entity->setCreatedAt($createdAt);
+        $this->assertEquals($createdAt, $entity->getCreatedAt());
     }
 }

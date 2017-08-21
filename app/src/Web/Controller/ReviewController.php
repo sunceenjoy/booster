@@ -32,7 +32,7 @@ class ReviewController extends BaseController
     {
         $fundraiser = $this->em->getRepository('Booster:FundraiserEntity')->getFundraiserById($request->get('f_id'));
         if (empty($fundraiser)) {
-            $this->addFlash('danger', 'Invalid fundraiser Id!');
+            $this->flashMessage('danger', 'Invalid fundraiser Id!');
             return $this->redirect('/');
         }
         $params = [
@@ -57,39 +57,39 @@ class ReviewController extends BaseController
         // We don't have to check $fundraiserId as it has constraints in database.
         
         if (!in_array($rating, [1, 2, 3, 4, 5])) {
-            $this->addFlash('danger', 'Valid rating value!');
+            $this->flashMessage('danger', 'Valid rating value!');
             return $this->redirect('/review-create?f_id='.$fundraiserId);
         }
         
         if (empty($name)) {
-            $this->addFlash('danger', 'Please enter your name!');
+            $this->flashMessage('danger', 'Please enter your name!');
             return $this->redirect('/review-create?f_id='.$fundraiserId);
         }
                 
         if (!\Swift_Validate::email($email)) {
-            $this->addFlash('danger', 'Valid email format!');
+            $this->flashMessage('danger', 'Valid email format!');
             return $this->redirect('/review-create?f_id='.$fundraiserId);
         }
         
         if (empty($review)) {
-            $this->addFlash('danger', 'Please enter the review!');
+            $this->flashMessage('danger', 'Please enter the review!');
             return $this->redirect('/review-create?f_id='.$fundraiserId);
         }
 
         // Here we check the ip in redis to reduce potential impact to database
         if ($this->requestRateChecker->ipRateCheck($ip) === true) {
-            $this->addFlash('danger', 'Request rate limit!');
+            $this->flashMessage('danger', 'Request rate limit!');
             return $this->redirect('/review-create?f_id='.$fundraiserId);
         }
         
         try {
             $this->em->getRepository('Booster:ReviewEntity')->addNew($fundraiserId, $name, $email, $rating, $review, $ip);
         } catch (UniqueConstraintViolationException $e) {
-            $this->addFlash('danger', 'This email address already has a review for this fundraiser!');
+            $this->flashMessage('danger', 'This email address already has a review for this fundraiser!');
             return $this->redirect('/review-create?f_id='.$fundraiserId);
         }
         
-        $this->addFlash('success', 'Review counted. Thank you!');
+        $this->flashMessage('success', 'Review counted. Thank you!');
         
         return $this->redirect('/');
     }

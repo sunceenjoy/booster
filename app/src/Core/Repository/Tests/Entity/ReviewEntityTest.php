@@ -32,5 +32,9 @@ class ReviewEntityTest extends \PHPUnit_Framework_TestCase
         $ip = '192.168.1.1';
         $entity->setIp($ip);
         $this->assertEquals($ip, $entity->getIp());
+        
+        $createdAt = new \DateTime();
+        $entity->setCreatedAt($createdAt);
+        $this->assertEquals($createdAt, $entity->getCreatedAt());
     }
 }

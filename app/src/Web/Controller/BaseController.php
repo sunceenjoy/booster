@@ -68,7 +68,7 @@ abstract class BaseController
      * @param string $type
      * @param string $message
      */
-    public function addFlash($type, $message)
+    public function flashMessage($type, $message)
     {
         $this->session->getFlashBag()->add($type, $message);
     }

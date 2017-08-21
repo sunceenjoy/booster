@@ -21,7 +21,7 @@ class ReviewControllerTest extends \PHPUnit_Framework_TestCase
         
         // Mock database
         $this->container['doctrine.entity_manager'] = function () {
-            // Now, mock the repository so it returns the mock of the employee
+            // Now, mock the repository so it returns the mock repository
             $mockRepository = $this->createMock(ReviewRepository::class);
             $mockRepository->expects($this->any())
                 ->method('addNew')
@@ -140,7 +140,7 @@ class ReviewControllerTest extends \PHPUnit_Framework_TestCase
         $request->request->set('review', 'My review');
                 
         $this->container['doctrine.entity_manager'] = function () {
-            // Now, mock the repository so it returns the mock of the employee
+            // Now, mock the repository so it returns the mock repository
             $mockRepository = $this->createMock(ReviewRepository::class);
             $mockRepository->expects($this->any())
                 ->method('addNew')

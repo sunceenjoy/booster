@@ -53,23 +53,23 @@ class FundraiserController extends BaseController
         $ip = $request->getClientIp();
         
         if (empty($name)) {
-            $this->addFlash('danger', 'Please enter a name!');
+            $this->flashMessage('danger', 'Please enter a name!');
             return $this->redirect('/fundraiser-create');
         }
         
         // Here we check the ip in redis to reduce potential impact to database
         if ($this->requestRateChecker->ipRateCheck($ip) === true) {
-            $this->addFlash('danger', 'Request rate limit!');
+            $this->flashMessage('danger', 'Request rate limit!');
             return $this->redirect('/fundraiser-create');
         }
         
         try {
             $this->em->getRepository('Booster:FundraiserEntity')->addNew($name);
         } catch (UniqueConstraintViolationException $e) {
-            $this->addFlash('danger', 'This fundraiser already exists!');
+            $this->flashMessage('danger', 'This fundraiser already exists!');
             return $this->redirect('/fundraiser-create');
         }
-        $this->addFlash('success', 'New Fundraiser Added.!');
+        $this->flashMessage('success', 'New Fundraiser Added.!');
         return $this->redirect('/');
     }
 }
