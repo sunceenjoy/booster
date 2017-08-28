@@ -1,7 +1,0 @@
-{
-  "name": "bower_components",
-  "dependencies": {
-    "bootstrap": "boostrap#^3.3.7",
-    "bootstrap-validator": "^0.11.9"
-  }
-}
