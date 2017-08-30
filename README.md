@@ -25,13 +25,13 @@ Demo: https://booster.mmyyabb.com
  - Unit tests are implements for util class, controllers, entity, helper class.
 
 # Alternative for email verification
-In this version, I just check the format for email validation. If we need to verify whether an email address is used by someone but not just the one with the right format. Those are steps:
-1. Add a record into table reviews after users submit the form. set reviews.flag = 0
-2. create token, set reviews.token= token.
-3. Send an email including this link to this users email address.
-4. Users open their mailbox and click the link to verify the email.
-5. Process this token and compare with the one in table reviews: token=reviews.token and review.email=email address
-6. If a matched record is found, then users review is valid.
+In this version, I just check the format for email validation. If we need to verify whether an email address is used by someone but not just the one with the right format. Those are steps: 
+1. Add new columns flag, token for table reviews.
+2. Once users submit the forms, we insert a new record into table reviews and set reviews.flag = 0, reviews.token = a random string 
+3. Create another token with reviews.token, reviews.email_address and send users an email including a link with this new token.
+4. Users open their mailbox and click the link.
+5. We process this token and compare with the ones in table reviews: token=reviews.token and review.email=email address
+6. If a matched record is found, we update review.flag and consider users review is valid.
 
 ### Installation
 1.Add write rule & ENV
