@@ -82,6 +82,8 @@ $ composer install
 ```
 
  # Run unit test:
+
 ```sh
+#Test files are located in the same dir as its function classes.
 $  phpunit -c phpunit.xml.dist
 ```
