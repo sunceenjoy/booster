@@ -3,7 +3,7 @@ This project is based on PHP Symfony2 Framework, uses Mysql as the database stor
 Demo: https://booster.mmyyabb.com
 # Directory Structure
   - ***app/config***: config files dir.
-  - ***app/resources***: services, routings or other php related resources 
+  - ***app/resources***: services(dependency injection), routings or other php related resources 
   - ***app/src***: main source files
   - ***bin***: command entry file
   - ***database-migration***: database migration
