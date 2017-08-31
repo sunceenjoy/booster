@@ -5,6 +5,7 @@ use Symfony\Component\Routing\Route;
 
 $collection = new RouteCollection();
 
+/** Start Fundraisers */
 $collection->add(
     'portal',
     new Route(
@@ -14,7 +15,7 @@ $collection->add(
 );
 
 $collection->add(
-    'Fundraiser Add',
+    'Fundraiser Create',
     new Route(
         '/fundraiser-create',
         array('_controller' => 'Booster\Web\Controller\FundraiserController::createFundraiser',)
@@ -28,7 +29,9 @@ $collection->add(
         array('_controller' => 'Booster\Web\Controller\FundraiserController::postFundraiser',)
     )
 );
+/** End Fundraisers */
 
+/** Start Reviews */
 $collection->add(
     'Review Create',
     new Route(
@@ -52,5 +55,6 @@ $collection->add(
         array('_controller' => 'Booster\Web\Controller\ReviewController::reviewList',)
     )
 );
+/** End Reviews */
 
 return $collection;

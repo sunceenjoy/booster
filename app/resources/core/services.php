@@ -1,4 +1,5 @@
 <?php
+/** Core dependency injection */
 
 $c['env'] = function ($c) {
     return new \Booster\Core\Environment(getenv('BOOSTER_ENV'));

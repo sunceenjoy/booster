@@ -1,4 +1,5 @@
 <?php
+/** Web dependency injection */
 
 $c['router.routes'] = function ($c) {
     $routes = require $c['app_resource_dir'].'/web/routing.php';

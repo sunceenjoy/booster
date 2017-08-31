@@ -15,8 +15,9 @@
 
     <testsuites>
         <testsuite name="Booster Website Test Suite">
-            <directory>app/src/Web/*/Tests</directory>
+            <directory>app/src/Web/*/Tests/</directory>
             <directory>app/src/Core/*/Tests</directory>
+            <directory>app/src/Core/*/*/Tests</directory>
         </testsuite>
     </testsuites>
 

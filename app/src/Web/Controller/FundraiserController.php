@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Fundraiser Controller
- *
  */
 class FundraiserController extends BaseController
 {
@@ -25,6 +24,8 @@ class FundraiserController extends BaseController
     }
     
     /**
+     * Fundraiser list page
+     * @Route("/")
      * @param Request $request
      * @return Response
      */
@@ -38,12 +39,20 @@ class FundraiserController extends BaseController
         return $this->render('web/fundraisers/list.html.twig', ['paginator' => $paginator]);
     }
 
+    /**
+     * Create fundraiser page
+     * @Route("/fundraiser-create")
+     * @param Request $request
+     * @return Response
+     */
     public function createFundraiser()
     {
         return $this->render('web/fundraisers/create_fundraiser.html.twig');
     }
     
     /**
+     * Process fundraiser post page
+     * @Route("/fundraiser-post")
      * @param Request $request
      * @return Response
      */

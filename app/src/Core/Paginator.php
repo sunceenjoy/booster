@@ -5,7 +5,7 @@ namespace Booster\Core;
 use Doctrine\ORM\Tools\Pagination\Paginator as ParentPaginator;
 
 /**
- * Description of Paginator
+ * Paginator class
  *
  * @author grantsun
  */

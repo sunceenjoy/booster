@@ -3,10 +3,14 @@
 namespace Booster\Core\Util;
 
 use Booster\Core\Container;
+use Symfony\Component\HttpFoundation\Request;
 
 class Uri
 {
+    /** @var Container $c */
     private $c;
+    
+    /** @var Request $request */
     private $request;
 
     public function __construct(Container $c)
@@ -35,7 +39,12 @@ class Uri
     {
         return $this->request->attributes->get('action');
     }
-
+    
+    /**
+     * Create a link based on current url, then replace/add the given params.
+     * @param array $params
+     * @return string
+     */
     public function replaceUrl($params = array())
     {
         $url = $this->request->getSchemeAndHttpHost().$this->request->getBaseUrl().$this->request->getPathInfo();

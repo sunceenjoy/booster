@@ -14,6 +14,7 @@ class ExceptionListener implements EventSubscriberInterface
     {
         $exception = $event->getException();
 
+        /** Process unexpected page */
         if ($exception instanceof NotFoundHttpException) {
             $response = new RedirectResponse('/404.html');
             $event->setResponse($response);

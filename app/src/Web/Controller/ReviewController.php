@@ -24,7 +24,8 @@ class ReviewController extends BaseController
         $this->requestRateChecker = $container['request_rate_checker'];
     }
     
-    /**
+    /** Create review page
+     * @Route("/review-create")
      * @param Request $request
      * @return Response
      */
@@ -42,6 +43,8 @@ class ReviewController extends BaseController
     }
 
     /**
+     * Process review post
+     * @Route("/review-post")
      * @param Request $request
      * @return Response
      */
@@ -54,7 +57,7 @@ class ReviewController extends BaseController
         $review = trim($request->request->get('review'));
         $ip = $request->getClientIp();
      
-        // We don't have to check $fundraiserId as it has constraints in database.
+        // We don't have to check the validations of $fundraiserId, inserting query will check the constraints in database.
         
         if (!in_array($rating, [1, 2, 3, 4, 5])) {
             $this->flashMessage('danger', 'Valid rating value!');
@@ -76,7 +79,7 @@ class ReviewController extends BaseController
             return $this->redirect('/review-create?f_id='.$fundraiserId);
         }
 
-        // Here we check the ip in redis to reduce potential impact to database
+        // Here we check the ip in redis to reduce potential impact to the database
         if ($this->requestRateChecker->ipRateCheck($ip) === true) {
             $this->flashMessage('danger', 'Request rate limit!');
             return $this->redirect('/review-create?f_id='.$fundraiserId);
@@ -94,6 +97,12 @@ class ReviewController extends BaseController
         return $this->redirect('/');
     }
     
+    /**
+     * Display the review list
+     * @Route("/review-list")
+     * @param Request $request
+     * @return Response
+     */
     public function reviewList(Request $request)
     {
         $pageSize = 10;

@@ -3,24 +3,28 @@
 namespace Booster\Web\Controller;
 
 use Booster\Core\Container;
+use Doctrine\DBAL\Connection;
+use Doctrine\ORM\EntityManager;
+use Monolog\Logger;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 abstract class BaseController
 {
-    /** @var \Symfony\Component\HttpFoundation\Response $response */
+    /** @var Response $response */
     protected $response = null;
 
-    /** @var \Doctrine\DBAL\Connection $db */
+    /** @var Connection $db */
     protected $db = null;
 
-    /** @var \Doctrine\ORM\EntityManager $em */
+    /** @var EntityManager $em */
     protected $em = null;
 
     /** @var Logger $logger */
     protected $logger = null;
     
-    /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
+    /** @var Session $session */
     protected $session;
     
     public function __construct(Container $container)

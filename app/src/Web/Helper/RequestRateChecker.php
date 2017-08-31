@@ -21,7 +21,7 @@ class RequestRateChecker
     /**
      *  @var int $requestRateLimit
      *  In a short time($requestInterval * $requestRateLimit)
-     *  a same ip can request $requestRateLimit times
+     *  one ip can only send $requestRateLimit requests
      */
     private $requestRateLimit = 3;
     
@@ -37,7 +37,8 @@ class RequestRateChecker
     
     /**
      * Check whether the ip reaches the request limit
-     * @param BOOL true if the ip is allowed, false otherwise.
+     * @param string $ipAddress
+     * @return BOOL true if the ip is allowed, false otherwise.
      */
     public function ipRateCheck($ipAddress)
     {
@@ -73,6 +74,10 @@ class RequestRateChecker
         return false;
     }
     
+    /**
+     * Get current request limit
+     * @return string
+     */
     public function getRequestRateLimit()
     {
         return $this->requestRateLimit;
